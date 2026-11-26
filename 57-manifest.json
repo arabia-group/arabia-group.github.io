@@ -1,1 +1,37 @@
-{"name": "أرابيا جروب - جملة مستحضرات تجميل", "short_name": "أرابيا جروب", "lang": "ar", "dir": "rtl", "start_url": "./index.html", "display": "standalone", "background_color": "#ffffff", "theme_color": "#7b2d8e", "icons": [{"src": "59-icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "60-icon-512.png", "sizes": "512x512", "type": "image/png"}]}
+{
+ "name": "أرابيا جروب - جملة مستحضرات تجميل",
+ "short_name": "أرابيا جروب",
+ "description": "كتالوج جملة أرابيا جروب: مكياج وعناية وعطور بأسعار الجملة",
+ "lang": "ar",
+ "dir": "rtl",
+ "id": "./index.html",
+ "start_url": "./index.html",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#ffffff",
+ "theme_color": "#6a1b7e",
+ "categories": [
+  "shopping"
+ ],
+ "icons": [
+  {
+   "src": "1-ic192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "2-ic512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "3-ic512m.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
