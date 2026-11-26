@@ -50,6 +50,8 @@ header:before,header:after{content:"";position:absolute;border-radius:50%;backgr
 .bar button{width:100%;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
 .ov{position:fixed;inset:0;background:#1a0a20aa;z-index:60;opacity:0;pointer-events:none;transition:.25s;display:flex;align-items:flex-end}.ov.on{opacity:1;pointer-events:auto}
 .sheet{background:#fff;width:100%;max-height:92vh;overflow:auto;border-radius:26px 26px 0 0;transform:translateY(100%);transition:.3s cubic-bezier(.2,.8,.2,1);padding-bottom:calc(16px + env(safe-area-inset-bottom))}.ov.on .sheet{transform:none}
+.sbar{position:sticky;top:0;z-index:6;height:34px;background:#fff;border-radius:26px 26px 0 0}.sbar .grab{margin:0 auto;position:relative;top:10px}.cx{position:absolute;top:2px;inset-inline-start:12px;width:38px;height:38px;border-radius:50%;background:#f3e8f5;color:var(--p);font-size:18px;font-weight:700;box-shadow:0 2px 8px #0002}
+.ch{position:sticky;top:0;z-index:6;background:#fff}
 .grab{width:44px;height:5px;border-radius:3px;background:#d8cbdc;margin:10px auto}
 .gal{display:flex;overflow:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.gal img{flex:0 0 100%;width:100%;max-height:52vh;object-fit:contain;background:#f7f2f8;scroll-snap-align:center}
 .dots{display:flex;justify-content:center;gap:6px;margin:8px}.dots i{width:7px;height:7px;border-radius:50%;background:#d8cbdc}.dots i.on{background:var(--p);width:18px;border-radius:4px}
@@ -115,13 +117,21 @@ function bar(){const ids=Object.keys(cart).filter(k=>cart[k]),n=ids.reduce((s,k)
  $("bd").textContent=n;$("bd").classList.toggle("on",n>0);$("bar").classList.toggle("on",n>0);$("bn").textContent=`عرض السلة (${n})`;$("bt").textContent=t+" ج";return[n,t,ids]}
 function c(id,d){id=String(id);cart[id]=Math.max(0,(cart[id]||0)+d);if(!cart[id])delete cart[id];save();r();if($("ov").dataset.v=="p")o(id,1);if($("ov").dataset.v=="c")cartv();if(d>0)toast("اتضاف للسلة ✓")}
 function f(id){fav=fav.includes(id)?fav.filter(x=>x!=id):[...fav,id];save();r();if($("ov").dataset.v=="p")o(id,1)}
-function show(h,v){$("sh").innerHTML=h;$("ov").dataset.v=v;$("ov").classList.add("on")}
-function hide(){$("ov").classList.remove("on");$("ov").dataset.v=""}
+let SHO=0;
+function show(h,v){if(!SHO){history.pushState({s:1},"");SHO=1}$("sh").innerHTML=h;$("ov").dataset.v=v;$("sh").style.transform="";$("ov").classList.add("on")}
+function closeUI(){$("ov").classList.remove("on");$("ov").dataset.v="";$("sh").style.transform=""}
+function hide(){closeUI();if(SHO){SHO=0;history.back()}}
+addEventListener("popstate",()=>{SHO=0;closeUI()});
+addEventListener("keydown",e=>{if(e.key=="Escape"&&SHO)hide()});
+(function(){const sh=$("sh");let y0=0,x0=0,dy=0,on=0;
+sh.addEventListener("touchstart",e=>{const t=e.touches[0];y0=t.clientY;x0=t.clientX;dy=0;on=sh.scrollTop<=0},{passive:true});
+sh.addEventListener("touchmove",e=>{if(!on)return;const t=e.touches[0],d=t.clientY-y0;if(d>0&&d>Math.abs(t.clientX-x0)){dy=d;sh.style.transition="none";sh.style.transform=`translateY(${d}px)`}else if(d<0){dy=0;sh.style.transform=""}},{passive:true});
+sh.addEventListener("touchend",()=>{sh.style.transition="";if(on&&dy>90)hide();else sh.style.transform="";dy=0},{passive:true});})();
 $("ov").onclick=e=>{if(e.target==$("ov"))hide()};
 function o(id,keep){const p=by(id);if(!p)return;if(!GLR[id]&&!keep){gal(id,()=>{if($("ov").dataset.v=="p"&&location.hash=="#p"+id)o(id,1)})}const sc=keep&&$("gal")?$("gal").scrollLeft:0;
- show(`<div class="grab"></div><div class="gal" id="gal">${IM(p).map(i=>`<img alt="" src="${i}">`).join("")}</div>${IM(p).length>1?`<div class="dots" id="dots">${IM(p).map((_,k)=>`<i class="${k?"":"on"}"></i>`).join("")}</div>`:""}<div class="bd"><h3>${E(p.n)}</h3>${pr(p)}<p>${E(p.t||"")}</p></div><div class="acts">${(cart[p.id]||0)?`<div class="step" style="flex:1;height:48px"><button onclick="c('${p.id}',1)">+</button><b>${cart[p.id]}</b><button onclick="c('${p.id}',-1)">−</button></div>`:`<button class="add" onclick="c('${p.id}',1)">أضف للسلة</button>`}<button class="fav ${fav.includes(p.id)?"on":""}" onclick="f('${p.id}')">♥</button></div>`,"p");
+ show(`<div class="sbar"><div class="grab"></div><button class="cx" onclick="hide()" aria-label="إغلاق">✕</button></div><div class="gal" id="gal">${IM(p).map(i=>`<img alt="" src="${i}">`).join("")}</div>${IM(p).length>1?`<div class="dots" id="dots">${IM(p).map((_,k)=>`<i class="${k?"":"on"}"></i>`).join("")}</div>`:""}<div class="bd"><h3>${E(p.n)}</h3>${pr(p)}<p>${E(p.t||"")}</p></div><div class="acts">${(cart[p.id]||0)?`<div class="step" style="flex:1;height:48px"><button onclick="c('${p.id}',1)">+</button><b>${cart[p.id]}</b><button onclick="c('${p.id}',-1)">−</button></div>`:`<button class="add" onclick="c('${p.id}',1)">أضف للسلة</button>`}<button class="fav ${fav.includes(p.id)?"on":""}" onclick="f('${p.id}')">♥</button></div>`,"p");
  const gl=$("gal");if(sc)gl.scrollLeft=sc;gl.onscroll=()=>{const k=Math.round(Math.abs(gl.scrollLeft)/gl.clientWidth);document.querySelectorAll("#dots i").forEach((d,j)=>d.classList.toggle("on",j==k))};
- history.replaceState(null,"","#p"+id)}
+ history.replaceState({s:1},"","#p"+id)}
 function IM(p){return GLR[p.id]||[TH[p.id]||""]}
 function cartv(){const[n,t,ids]=bar();if(!n){hide();return}
  show(`<div class="grab"></div><div class="ch"><h3>سلتك</h3><button class="x" onclick="hide()">✕</button></div>${ids.map(k=>{const p=by(k),n=cart[k];return `<div class="li"><img alt="" src="${TH[p.id]||""}"><div class="t"><b>${E(p.n)}</b><small>${n} × ${p.p} ج${p.d&&n>=12?" (سعر الدستة مطبّق)":""} = ${line(p,n)} ج</small></div><div class="step"><button onclick="c('${k}',1)">+</button><b>${n}</b><button onclick="c('${k}',-1)">−</button></div></div>`}).join("")}<div class="sum"><div><span>عدد القطع</span><b>${n}</b></div><div><span>عدد الأصناف</span><b>${ids.length}</b></div><div class="tt"><span>الإجمالي التقريبي</span><span>${t} ج</span></div></div><div class="note">الإجمالي بدون الشحن، وبيتأكد من المحل على واتساب. سعر الدستة بيتطبق تلقائي لما الكمية تبقى 12 فأكتر في الصنف اللي له سعر دستة.</div><button class="wa" onclick="chk()">متابعة وإدخال بيانات العميل</button><button class="clr" onclick="if(confirm('تفضية السلة؟')){cart={};save();r();hide()}">تفضية السلة</button>`,"c")}
