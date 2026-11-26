@@ -85,7 +85,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:18px 12px}
 <script>
 const PHONE="201112462010",$=i=>document.getElementById(i);
 let P=[],cart=JSON.parse(localStorage.getItem("ac")||"{}"),fav=JSON.parse(localStorage.getItem("af")||"[]"),cat="الكل",q="",flt="all";
-const cats=["الكل","عطور وسبلاش","مكياج","عناية بالبشرة","عناية بالجسم","عناية بالشعر"];
+const cats=["الكل","عطور وسبلاش","مكياج","عناية بالبشرة","عناية بالجسم","عناية بالشعر","إكسسوارات","أدوات ومنزل"];
 const flts=[["all","الأفضل (ترند)"],["new","الأحدث"],["fav","♥ المفضلة"],["lo","الأرخص"],["hi","الأغلى"],["u50","أقل من 50"],["u100","50 إلى 100"],["o100","أكثر من 100"],["dz","له سعر دستة"]];
 const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const save=()=>{localStorage.setItem("an",JSON.stringify(AN));localStorage.setItem("ac",JSON.stringify(cart));localStorage.setItem("af",JSON.stringify(fav))};
@@ -103,7 +103,7 @@ function toast(t){const e=$("tt");e.textContent=t;e.classList.add("on");clearTim
 function bdg(p){const a=[];if(p.d)a.push("عرض الدستة");if(p.dt>=NEWD)a.push("جديد");if(p.promo>=3&&a.length<2)a.push("ترويج متكرر");return a.length?`<div class="bgs">${a.map(x=>`<span>${x}</span>`).join("")}</div>`:""}
 const NEWD="2026-11-25";
 function pr(p){return `<div class="pr">${p.p} ج<small>${E(p.l||"للقطعة")}</small></div>${p.d?`<span class="dz">الدستة ${p.d} ج</span>`:""}`}
-const TH={},GLR={},SHN={th:["63-th0.json","64-th1.json","65-th2.json","66-th3.json","67-th4.json"],gl:["68-gl0.json", "69-gl1.json", "70-gl2.json", "71-gl3.json", "72-gl4.json", "73-gl5.json", "74-gl6.json", "75-gl7.json", "76-gl8.json", "77-gl9.json", "78-gl10.json", "79-gl11.json", "80-gl12.json", "81-gl13.json", "82-gl14.json", "83-gl15.json", "84-gl16.json", "85-gl17.json", "86-gl18.json"]};
+const TH={},GLR={},SHN={th:["96-th0.json","97-th1.json","98-th2.json","99-th3.json","100-th4.json"],gl:["101-gl0.json", "102-gl1.json", "103-gl2.json", "104-gl3.json", "105-gl4.json", "106-gl5.json", "107-gl6.json", "108-gl7.json", "109-gl8.json", "110-gl9.json", "111-gl10.json", "112-gl11.json", "113-gl12.json", "114-gl13.json", "115-gl14.json", "116-gl15.json", "117-gl16.json", "118-gl17.json", "119-gl18.json", "120-gl19.json", "121-gl20.json", "122-gl21.json", "123-gl22.json", "124-gl23.json", "125-gl24.json", "126-gl25.json", "127-gl26.json", "128-gl27.json", "129-gl28.json", "130-gl29.json", "131-gl30.json", "132-gl31.json", "133-gl32.json", "134-gl33.json", "135-gl34.json", "136-gl35.json", "137-gl36.json", "138-gl37.json", "139-gl38.json", "140-gl39.json", "141-gl40.json"]};
 function thumb(id){return TH[id]||""}
 function loadTh(){SHN.th.forEach(u=>fetch(u).then(x=>x.json()).then(d=>{Object.assign(TH,d);document.querySelectorAll("img[data-t]").forEach(im=>{const v=TH[im.dataset.t];if(v){im.src=v;im.removeAttribute("data-t");im.parentElement.classList.add("ld")}});if(cartOpen())cartv()}).catch(()=>{}))}
 function cartOpen(){return $("ov").dataset.v=="c"}
@@ -176,7 +176,7 @@ let RF="";function snd(){const u=cu();const m=msg(u,RF);const N=nowC();localStor
 $("cb").onclick=$("open").onclick=cartv;
 $("s").oninput=e=>{q=e.target.value.trim();r()};
 skel();
-fetch("62-7-products.json").then(x=>x.json()).then(d=>{P=d.map(p=>({...p,id:String(p.id)}));cart=Object.fromEntries(Object.entries(cart).filter(([k])=>{const p=by(bs(k));return p&&(!hv(p)||k.includes("~"))}));fav=fav.filter(k=>by(k));
+fetch("95-7-products.json").then(x=>x.json()).then(d=>{P=d.map(p=>({...p,id:String(p.id)}));cart=Object.fromEntries(Object.entries(cart).filter(([k])=>{const p=by(bs(k));return p&&(!hv(p)||k.includes("~"))}));fav=fav.filter(k=>by(k));
  const cc={},tr=P.filter(p=>(cc[p.c]=(cc[p.c]||0)+1)<=4).slice(0,12);$("offw").style.display="block";$("off").innerHTML=tr.map(p=>`<div class="of" onclick="o('${p.id}')">${bdg(p)}<div class="ph2 ${TH[p.id]?"ld":""}"><img alt="" ${TH[p.id]?`src="${TH[p.id]}"`:`data-t="${p.id}"`}></div><div><b>${E(p.n)}</b><div class="pr" style="font-size:15px">${p.p} ج<small>${E(p.l||"للقطعة")}</small></div>${p.d?`<span class="dz">الدستة ${p.d} ج</span>`:""}</div></div>`).join("");
  r(1);loadTh();if(location.hash.startsWith("#p"))o(location.hash.slice(2))});
 if("serviceWorker"in navigator)navigator.serviceWorker.register("58-sw.js");
