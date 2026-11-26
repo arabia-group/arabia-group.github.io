@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#6a1b7e"><link rel="manifest" href="1-manifest.json"><link rel="icon" href="3-icon-192.png"><link rel="apple-touch-icon" href="3-icon-192.png"><title>أرابيا جروب | جملة مستحضرات التجميل</title>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#6a1b7e"><link rel="manifest" href="57-manifest.json"><link rel="icon" href="59-icon-192.png"><link rel="apple-touch-icon" href="59-icon-192.png"><title>أرابيا جروب | جملة مستحضرات التجميل</title>
 <style>
 :root{--p:#6a1b7e;--p2:#d63f86;--ink:#231629;--mut:#7a6b80;--bg:#f7f2f8;--card:#fff;--ok:#1fb85a;--r:18px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}
@@ -69,7 +69,7 @@ header:before,header:after{content:"";position:absolute;border-radius:50%;backgr
 .bk{background:none;color:var(--p);font-size:14px;font-weight:700;padding:6px 18px}
 footer{text-align:center;color:var(--mut);font-size:12px;padding:18px 12px}
 </style></head><body>
-<header><div class="top"><img class="logo" src="5-logo.png" alt="أرابيا جروب"><div><h1>أرابيا جروب</h1><p>جملة مستحضرات التجميل من أول قطعة</p></div><button class="iconb" id="cb" aria-label="السلة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 11.5a2 2 0 0 0 2 1.5h7.8a2 2 0 0 0 2-1.5L21 7H6"/></svg><span class="badge" id="bd">0</span></button></div></header>
+<header><div class="top"><img class="logo" src="61-logo.png" alt="أرابيا جروب"><div><h1>أرابيا جروب</h1><p>جملة مستحضرات التجميل من أول قطعة</p></div><button class="iconb" id="cb" aria-label="السلة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 11.5a2 2 0 0 0 2 1.5h7.8a2 2 0 0 0 2-1.5L21 7H6"/></svg><span class="badge" id="bd">0</span></button></div></header>
 <div class="sw"><div class="search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9a7aa5" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="s" placeholder="ابحث عن منتج..." autocomplete="off"></div></div>
 <div class="hero"><div><h2>أسعار جملة لكل المحافظات</h2><p>مكياج، عناية بالجسم والبشرة، وعطور. اطلب من أول قطعة، وأسعار الدستة أوفر.</p><span class="pill">شحن لجميع المحافظات</span></div></div>
 <div class="perks"><span>منتجات أصلية</span><span>شحن لكل المحافظات</span><span>الطلب عبر واتساب</span><span>عروض الدستة</span></div>
@@ -93,7 +93,7 @@ function toast(t){const e=$("tt");e.textContent=t;e.classList.add("on");clearTim
 function bdg(p){const a=[];if(p.d)a.push("عرض الدستة");if(p.dt>=NEWD)a.push("جديد");if(p.promo>=3&&a.length<2)a.push("ترويج متكرر");return a.length?`<div class="bgs">${a.map(x=>`<span>${x}</span>`).join("")}</div>`:""}
 const NEWD="2026-11-25";
 function pr(p){return `<div class="pr">${p.p} ج<small>${E(p.l||"للقطعة")}</small></div>${p.d?`<span class="dz">الدستة ${p.d} ج</span>`:""}`}
-const TH={},GLR={},SHN={th:["7-th0.json","8-th1.json","9-th2.json","10-th3.json","11-th4.json"],gl:["12-gl0.json", "13-gl1.json", "14-gl2.json", "15-gl3.json", "16-gl4.json", "17-gl5.json", "18-gl6.json", "19-gl7.json", "20-gl8.json", "21-gl9.json", "22-gl10.json", "23-gl11.json", "24-gl12.json", "25-gl13.json", "26-gl14.json", "27-gl15.json", "28-gl16.json", "29-gl17.json", "30-gl18.json"]};
+const TH={},GLR={},SHN={th:["63-th0.json","64-th1.json","65-th2.json","66-th3.json","67-th4.json"],gl:["68-gl0.json", "69-gl1.json", "70-gl2.json", "71-gl3.json", "72-gl4.json", "73-gl5.json", "74-gl6.json", "75-gl7.json", "76-gl8.json", "77-gl9.json", "78-gl10.json", "79-gl11.json", "80-gl12.json", "81-gl13.json", "82-gl14.json", "83-gl15.json", "84-gl16.json", "85-gl17.json", "86-gl18.json"]};
 function thumb(id){return TH[id]||""}
 function loadTh(){SHN.th.forEach(u=>fetch(u).then(x=>x.json()).then(d=>{Object.assign(TH,d);document.querySelectorAll("img[data-t]").forEach(im=>{const v=TH[im.dataset.t];if(v){im.src=v;im.removeAttribute("data-t");im.parentElement.classList.add("ld")}});if(cartOpen())cartv()}).catch(()=>{}))}
 function cartOpen(){return $("ov").dataset.v=="c"}
@@ -144,8 +144,8 @@ function snd(){const u=cu();location.href="https://wa.me/"+PHONE+"?text="+encode
 $("cb").onclick=$("open").onclick=cartv;
 $("s").oninput=e=>{q=e.target.value.trim();r()};
 skel();
-fetch("6-7-products.json").then(x=>x.json()).then(d=>{P=d.map(p=>({...p,id:String(p.id)}));cart=Object.fromEntries(Object.entries(cart).filter(([k])=>by(k)));fav=fav.filter(k=>by(k));
+fetch("62-7-products.json").then(x=>x.json()).then(d=>{P=d.map(p=>({...p,id:String(p.id)}));cart=Object.fromEntries(Object.entries(cart).filter(([k])=>by(k)));fav=fav.filter(k=>by(k));
  const cc={},tr=P.filter(p=>(cc[p.c]=(cc[p.c]||0)+1)<=4).slice(0,12);$("offw").style.display="block";$("off").innerHTML=tr.map(p=>`<div class="of" onclick="o('${p.id}')">${bdg(p)}<div class="ph2 ${TH[p.id]?"ld":""}"><img alt="" ${TH[p.id]?`src="${TH[p.id]}"`:`data-t="${p.id}"`}></div><div><b>${E(p.n)}</b><div class="pr" style="font-size:15px">${p.p} ج<small>${E(p.l||"للقطعة")}</small></div>${p.d?`<span class="dz">الدستة ${p.d} ج</span>`:""}</div></div>`).join("");
  r(1);loadTh();if(location.hash.startsWith("#p"))o(location.hash.slice(2))});
-if("serviceWorker"in navigator)navigator.serviceWorker.register("2-sw.js");
+if("serviceWorker"in navigator)navigator.serviceWorker.register("58-sw.js");
 </script></body></html>
